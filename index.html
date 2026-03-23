@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<!-- V2 Bold SaaS | GitHub→Vercel | AI Website Factory -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus Premium | Next-Gen SaaS Platform</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --accent: #f59e0b;
+            --bg: #0a0a0f;
+            --surface: #111118;
+            --text: #f0f0ff;
+            --muted: #8888aa;
+            --border: rgba(255, 255, 255, 0.08);
+            --glow: #6366f140;
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            outline: none;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary) var(--bg);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- BACKGROUND ORBS --- */
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            z-index: -1;
+            opacity: 0.4;
+            animation: float 20s infinite alternate;
+        }
+
+        .orb-1 { width: 400px; height: 400px; background: var(--primary); top: -100px; left: -100px; }
+        .orb-2 { width: 500px; height: 500px; background: #8b5cf6; bottom: 10%; right: -100px; }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(100px, 50px) scale(1.1); }
+        }
+
+        /* --- UTILS --- */
+        .container { max-width: 1300px; margin: 0 auto; padding: 0 2rem; }
+        .section-padding { padding: 100px 0; }
+        .reveal { opacity: 0; transform: translateY(30px); transition: var(--transition); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, #fff 0%, var(--primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* --- HEADER --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: var(--transition);
+            border-bottom: 1px solid transparent;
+        }
+
+        header.scrolled {
+            background: rgba(10, 10, 15, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: var(--border);
+            padding: 0.5rem 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 900;
+            letter-spacing: -1px;
+            color: #fff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-box {
+            width: 32px;
+            height: 32px;
+            background: var(--primary);
+            border-radius: 8px;
+            box-shadow: 0 0 15px var(--glow);
+        }
+
+        .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--muted);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+        .nav-links a:hover { color: #fff; }
+
+        .nav-cta {
+            background: #fff;
+            color: #000;
+            padding: 0.8rem 1.8rem;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+        .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(255,255,255,0.1); }
+
+        /* --- HERO --- */
+        .hero {
+            position: relative;
+            padding: 180px 0 100px;
+            display: flex;
+            align-items: center;
+            min-height: 90vh;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(3rem, 8vw, 5.5rem);
+            line-height: 1;
+            font-weight: 900;
+            letter-spacing: -3px;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-content p {
+            font-size: 1.25rem;
+            color: var(--muted);
+            max-width: 600px;
+            margin-bottom: 2.5rem;
+        }
+
+        .hero-btns { display: flex; gap: 1rem; }
+
+        .btn {
+            padding: 1.2rem 2.5rem;
+            border-radius: 12px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-block;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: #fff;
+            box-shadow: 0 20px 40px var(--glow);
+            border: none;
+        }
+
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 25px 50px var(--glow); }
+
+        .btn-secondary {
+            background: rgba(255,255,255,0.05);
+            color: #fff;
+            border: 1px solid var(--border);
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-image {
+            position: relative;
+            border-radius: 24px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.02));
+            border: 1px solid var(--border);
+            padding: 1rem;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.5);
+        }
+
+        .hero-image img {
+            width: 100%;
+            border-radius: 16px;
+            display: block;
+        }
+
+        /* --- BENTO SERVICES --- */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-auto-rows: 280px;
+            gap: 1.5rem;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 2.5rem;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-card:hover {
+            border-color: rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.06);
+            transform: translateY(-5px);
+        }
+
+        .glass-card h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        .glass-card p { color: var(--muted); font-size: 0.95rem; }
+        
+        .span-6 { grid-column: span 6; }
+        .span-4 { grid-column: span 4; }
+        
+        .service-icon {
+            position: absolute;
+            top: 2.5rem;
+            left: 2.5rem;
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 10px 20px var(--glow);
+        }
+
+        /* --- ABOUT --- */
+        .about-split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-item h4 { font-size: 2.5rem; font-weight: 800; color: var(--primary); }
+        .stat-item p { color: var(--muted); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 2px; }
+
+        /* --- TESTIMONIALS --- */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background: var(--surface);
+            padding: 3rem;
+            border-radius: 24px;
+            border: 1px solid var(--border);
+        }
+
+        .quote { font-size: 1.1rem; margin-bottom: 2rem; }
+        .author { display: flex; align-items: center; gap: 1rem; }
+        .author img { width: 48px; height: 48px; border-radius: 50%; background: #222; }
+        .author-info h5 { font-weight: 700; }
+        .author-info span { font-size: 0.8rem; color: var(--muted); }
+
+        /* --- GALLERY --- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .gallery-item {
+            border-radius: 20px;
+            overflow: hidden;
+            aspect-ratio: 16/10;
+            border: 1px solid var(--border);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .gallery-item:hover img { transform: scale(1.1); }
+
+        /* --- CTA --- */
+        .cta-section {
+            background: linear-gradient(45deg, #4f46e5, #9333ea);
+            border-radius: 40px;
+            padding: 100px 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section h2 { font-size: 4rem; font-weight: 900; margin-bottom: 1.5rem; }
+        .cta-section p { font-size: 1.5rem; margin-bottom: 3rem; opacity: 0.9; }
+
+        /* --- CONTACT --- */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 4rem;
+        }
+
+        .contact-info { display: flex; flex-direction: column; gap: 1.5rem; }
+        
+        .contact-card {
+            background: var(--surface);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        .contact-card:hover { border-color: var(--primary); transform: translateX(10px); }
+
+        .map-container {
+            width: 100%;
+            height: 400px;
+            border-radius: 24px;
+            overflow: hidden;
+            background: #111;
+            border: 1px solid var(--border);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            padding: 80px 0 40px;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 60px;
+        }
+
+        .footer-logo { margin-bottom: 1.5rem; }
+        .footer-text { color: var(--muted); max-width: 300px; }
+        
+        .footer-col h5 { font-size: 1.1rem; margin-bottom: 1.5rem; }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 0.8rem; }
+        .footer-col a { text-decoration: none; color: var(--muted); transition: var(--transition); }
+        .footer-col a:hover { color: #fff; }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 40px;
+            border-top: 1px solid var(--border);
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        /* --- CURSOR --- */
+        #cursor-glow {
+            position: fixed;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, var(--glow) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+            transform: translate(-50%, -50%);
+            mix-blend-mode: screen;
+            display: none;
+        }
+
+        @media (max-width: 1024px) {
+            .hero-grid, .about-split, .contact-grid { grid-template-columns: 1fr; }
+            .span-6, .span-4 { grid-column: span 12; }
+            .testimonials-grid, .gallery-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+            .nav-links { display: none; }
+            .hero-content h1 { font-size: 3.5rem; }
+            .cta-section h2 { font-size: 2.5rem; }
+        }
+
+        /* --- SCROLL REVEAL STAGGER --- */
+        .stagger-item { transition-delay: calc(0.1s * var(--i)); }
+    </style>
+</head>
+<body>
+
+    <div id="cursor-glow"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+
+    <header id="header">
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">
+                    <div class="logo-box"></div>
+                    NEXUS
+                </a>
+                <ul class="nav-links">
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#about">Innovation</a></li>
+                    <li><a href="#testimonials">Process</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <a href="#" class="nav-cta">Get Started</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content reveal stagger-item" style="--i:1">
+                    <h1>Deploy <span class="gradient-text">Intelligence</span> at Scale</h1>
+                    <p>The operating system for modern enterprises. Streamline workflows, analyze deep data, and scale your infrastructure with one unified platform.</p>
+                    <div class="hero-btns">
+                        <a href="#" class="btn btn-primary">Start Free Trial</a>
+                        <a href="#" class="btn btn-secondary">Book a Demo</a>
+                    </div>
+                </div>
+                <div class="hero-image reveal stagger-item" style="--i:2">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2426" alt="Dashboard Preview">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="section-padding">
+        <div class="container">
+            <div style="text-align: center; max-width: 700px; margin: 0 auto 4rem;">
+                <h2 class="reveal" style="font-size: 3rem; font-weight: 800; margin-bottom: 1rem;">Engineered for <span class="gradient-text">Power</span></h2>
+                <p class="reveal" style="color: var(--muted);">Everything you need to build, deploy, and scale world-class applications in record time.</p>
+            </div>
+            
+            <div class="bento-grid">
+                <div class="glass-card span-6 reveal stagger-item" style="--i:1">
+                    <div class="service-icon">⚡</div>
+                    <h3>Real-time Analytics</h3>
+                    <p>Process millions of data points per second with our low-latency neural engine.</p>
+                </div>
+                <div class="glass-card span-6 reveal stagger-item" style="--i:2">
+                    <div class="service-icon">🔒</div>
+                    <h3>Enterprise Security</h3>
+                    <p>Military-grade encryption and SOC2 compliance built into every layer of your stack.</p>
+                </div>
+                <div class="glass-card span-4 reveal stagger-item" style="--i:3">
+                    <div class="service-icon">🌐</div>
+                    <h3>Global Edge</h3>
+                    <p>Deploy to 140+ locations instantly with zero-config edge functions.</p>
+                </div>
+                <div class="glass-card span-4 reveal stagger-item" style="--i:4">
+                    <div class="service-icon">🤖</div>
+                    <h3>Neural API</h3>
+                    <p>Connect your custom AI models with simple, robust REST endpoints.</p>
+                </div>
+                <div class="glass-card span-4 reveal stagger-item" style="--i:5">
+                    <div class="service-icon">📦</div>
+                    <h3>Auto-Scaling</h3>
+                    <p>Infrastructure that grows with you. Never worry about capacity again.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="section-padding">
+        <div class="container">
+            <div class="about-split">
+                <div class="reveal">
+                    <h2 style="font-size: 3rem; font-weight: 800; margin-bottom: 1.5rem;">Infrastructure for the <span class="gradient-text">Next Billion</span></h2>
+                    <p style="color: var(--muted); margin-bottom: 2rem;">We've spent a decade refining the core systems that power the world's most demanding applications. Our philosophy is simple: remove every friction point between your idea and its execution.</p>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <h4 data-count="99">0</h4>
+                            <p>Uptime %</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4 data-count="250">0</h4>
+                            <p>Global Users (k)</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4 data-count="140">0</h4>
+                            <p>Countries</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4 data-count="12">0</h4>
+                            <p>ms Latency</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-image reveal" style="transform: rotate(2deg);">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=2070" alt="Innovation">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="section-padding">
+        <div class="container">
+            <div class="testimonials-grid">
+                <div class="testimonial-card reveal stagger-item" style="--i:1">
+                    <p class="quote">"Nexus has completely transformed how our engineering team operates. What used to take weeks now takes minutes."</p>
+                    <div class="author">
+                        <img src="https://i.pravatar.cc/150?u=1" alt="CEO">
+                        <div class="author-info">
+                            <h5>Sarah Chen</h5>
+                            <span>CTO, TechFlow</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card reveal stagger-item" style="--i:2">
+                    <p class="quote">"The level of detail and polish in this platform is insane. It's like Stripe for enterprise infrastructure."</p>
+                    <div class="author">
+                        <img src="https://i.pravatar.cc/150?u=2" alt="Dev">
+                        <div class="author-info">
+                            <h5>Marcus Thorne</h5>
+                            <span>Lead Engineer, Velo</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card reveal stagger-item" style="--i:3">
+                    <p class="quote">"Scaling was our biggest nightmare until we switched to Nexus. Now we sleep soundly every single night."</p>
+                    <div class="author">
+                        <img src="https://i.pravatar.cc/150?u=3" alt="Founder">
+                        <div class="author-info">
+                            <h5>Elena Rodriguez</h5>
+                            <span>Founder, Nova Labs</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" class="section-padding">
+        <div class="container">
+            <div class="gallery-grid">
+                <div class="gallery-item reveal stagger-item" style="--i:1"><img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800" alt="UI 1"></div>
+                <div class="gallery-item reveal stagger-item" style="--i:2"><img src="https://images.unsplash.com/photo-1581291518655-95245be4b942?auto=format&fit=crop&q=80&w=800" alt="UI 2"></div>
+                <div class="gallery-item reveal stagger-item" style="--i:3"><img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=800" alt="UI 3"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding">
+        <div class="container">
+            <div class="cta-section reveal">
+                <h2>Ready to <span style="text-decoration: underline;">Scale?</span></h2>
+                <p>Join over 10,000+ teams building the future.</p>
+                <a href="#" class="btn btn-primary" style="background: #fff; color: #000; box-shadow: 0 10px 30px rgba(255,255,255,0.3);">Get Started for Free</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section-padding">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="reveal">
+                    <h2 style="font-size: 3rem; font-weight: 800; margin-bottom: 2rem;">Get in <span class="gradient-text">Touch</span></h2>
+                    <div class="contact-info">
+                        <a href="tel:+1000000000" class="contact-card">
+                            <div class="service-icon" style="position: static;">📞</div>
+                            <div>
+                                <h5>Call Us</h5>
+                                <p>+1 (555) 000-0000</p>
+                            </div>
+                        </a>
+                        <a href="https://wa.me/000000000" target="_blank" class="contact-card">
+                            <div class="service-icon" style="position: static; background: #25d366;">💬</div>
+                            <div>
+                                <h5>WhatsApp</h5>
+                                <p>Chat with Support</p>
+                            </div>
+                        </a>
+                        <div class="contact-card">
+                            <div class="service-icon" style="position: static; background: var(--accent);">📍</div>
+                            <div>
+                                <h5>Address</h5>
+                                <p>123 Innovation Way, Silicon Valley, CA</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="reveal">
+                    <div class="map-container">
+                        <!-- Placeholder for Map -->
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3168.639290622367!2d-122.0837468!3d37.4219999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808fbba030d88657%3A0x2297784289066027!2sGoogleplex!5e0!3m2!1sen!2sus!4v1625000000000!5m2!1sen!2sus" width="100%" height="100%" style="border:0; filter: invert(90%) hue-rotate(180deg) brightness(0.8);" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="#" class="logo footer-logo">
+                        <div class="logo-box"></div>
+                        NEXUS
+                    </a>
+                    <p class="footer-text">The world's most advanced SaaS infrastructure for scaling enterprises.</p>
+                </div>
+                <div class="footer-col">
+                    <h5>Platform</h5>
+                    <ul>
+                        <li><a href="#">Engine</a></li>
+                        <li><a href="#">Security</a></li>
+                        <li><a href="#">Global Edge</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Company</h5>
+                    <ul>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Legal</h5>
+                    <ul>
+                        <li><a href="#">Privacy</a></li>
+                        <li><a href="#">Terms</a></li>
+                        <li><a href="#">Cookies</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Nexus AI Inc. All rights reserved.</p>
+                <p>Rating: 4.9/5 (2,450 reviews)</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Glass Nav Scroll
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Scroll Reveal Stagger
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    // If element has counter
+                    const counters = entry.target.querySelectorAll('[data-count]');
+                    counters.forEach(counter => animateCounter(counter));
+                }
+            });
+        }, { threshold: 0.1 });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // Counter Logic
+        function animateCounter(el) {
+            if (el.dataset.animated) return;
+            el.dataset.animated = "true";
+            const target = +el.dataset.count;
+            let count = 0;
+            const speed = 2000 / target;
+            
+            const updateCount = () => {
+                if (count < target) {
+                    count++;
+                    el.innerText = count + (target === 99 ? '%' : '');
+                    setTimeout(updateCount, speed);
+                } else {
+                    el.innerText = target + (target === 99 ? '%' : '');
+                }
+            };
+            updateCount();
+        }
+
+        // Custom Cursor Glow
+        const glow = document.getElementById('cursor-glow');
+        if (window.innerWidth > 1024) {
+            glow.style.display = 'block';
+            document.addEventListener('mousemove', (e) => {
+                glow.style.left = e.clientX + 'px';
+                glow.style.top = e.clientY + 'px';
+            });
+        }
+
+        // Smooth Anchor Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
